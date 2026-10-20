@@ -88,7 +88,3 @@ On Windows, use the supplied Windows verification script if available.
 * Improve diagnostics and error reporting.
 * Extend code generation and runtime validation.
 * Add benchmarks for evaluating optimization effectiveness.
-
-## License
-
-Choose a license before distributing or accepting contributions to this project.
