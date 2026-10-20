@@ -1,100 +1,93 @@
-# Assembler and Linker in C++
+# Mini Compiler in C++
 
-A systems programming project that explores how assembly instructions are translated into machine-code representations and how separately assembled object files are combined into a linked program.
+A modular compiler implementation written in C++ to explore compiler architecture, intermediate representations, optimization techniques, and low-level program translation.
 
 ## Overview
 
-This project implements an assembler and linker for a custom instruction set using C++. The assembler translates supported assembly instructions into machine-code representations, while the linker resolves symbols and combines object files into a unified output.
+This project implements a miniature compiler with a focus on understanding how source code is processed through different stages of a compilation pipeline. It is designed with a modular architecture, testable components, and an emphasis on correctness and maintainability.
 
-The project focuses on instruction encoding, symbol-table management, label resolution, relocation, and the organization of low-level program components.
+The project explores core compiler concepts, including lexical analysis, parsing, intermediate representation (IR), optimization, and code generation.
 
 ## Features
 
-* **Instruction Encoding:** Converts supported assembly instructions into machine-code representations.
-* **Symbol Tables:** Records labels and symbols with their associated addresses.
-* **Label Resolution:** Resolves symbolic references to instruction or data locations.
-* **Object Files:** Represents assembled code and the information required for linking.
-* **Relocation:** Adjusts address-dependent references when code or data locations change.
-* **Multi-File Linking:** Combines multiple object files and resolves cross-file symbol references.
-* **Automated Testing:** Validates instruction encoding, symbol resolution, relocation, and linking behavior.
+* **Lexical Analysis:** Tokenizes source input into meaningful language elements.
+* **Parsing:** Processes tokens according to the language grammar.
+* **Intermediate Representation:** Represents programs in a form suitable for analysis and transformation.
+* **Compiler Optimizations:** Implements optimization passes such as constant folding and dead code elimination.
+* **Modular Architecture:** Separates compiler components into maintainable C++ modules.
+* **Automated Testing:** Uses a test suite to validate compiler behavior and optimization correctness.
+* **Build and Verification:** Supports a repeatable build and testing workflow.
 
 ## Architecture
 
+The compiler is organized around a pipeline of processing stages:
+
 ```
-Assembly Source Files
-         |
-         v
-      Assembler
-         |
-         v
-   Object Files
-         |
-         v
-       Linker
-         |
-         v
-  Symbol Resolution
-         |
-         v
-      Relocation
-         |
-         v
-    Linked Output
+Source Code
+    |
+    v
+Lexical Analysis
+    |
+    v
+Parsing
+    |
+    v
+Intermediate Representation
+    |
+    v
+Optimization Passes
+    |
+    v
+Code Generation
+    |
+    v
+Output
 ```
 
-## Core Concepts
+## Optimization
 
-### Assembler
+The optimization component is designed around independently testable passes. These include:
 
-The assembler processes supported instructions and converts them into machine-code representations. It maintains symbol information and resolves labels according to the custom instruction-set design.
+* **Constant Folding:** Evaluates constant expressions at compile time.
+* **Dead Code Elimination:** Removes code that does not contribute to program results.
 
-### Symbol Tables
-
-Symbol tables associate labels with addresses or other symbol metadata. They support references within a source file and references that must be resolved during linking.
-
-### Relocation
-
-Relocation updates address-dependent references when code or data is placed at different locations in the final output. This allows separately assembled components to be combined correctly.
-
-### Linker
-
-The linker combines object files, resolves references between separately defined symbols, and applies relocation information to produce the final linked output.
+The modular design makes it possible to test optimization passes individually and verify their behavior against expected results.
 
 ## Technology Stack
 
 * **Language:** C++
-* **Domain:** Systems Programming
-* **Core Topics:** Instruction encoding, symbol tables, relocation, object files, linking
-* **Testing:** Automated test cases
+* **Build System:** CMake
+* **Testing:** Automated unit and regression tests
+* **Development Environment:** Visual Studio Code
 
 ## Building and Testing
 
-Build the project using the build system configured in the repository.
-
-If the project uses CMake, run:
+The project uses CMake for configuration and building.
 
 ```
 cmake -S . -B build
 cmake --build build
 ```
 
-Run the available test suite to validate instruction encoding, label resolution, relocation, and multi-file linking.
+Run the project's test suite using the test commands or verification scripts provided in the repository.
+
+On Windows, use the supplied Windows verification script if available.
 
 ## Project Goals
 
-* Understand the relationship between assembly language and machine code.
-* Explore symbol resolution and relocation at a low level.
-* Implement modular assembler and linker components in C++.
-* Develop reliable test cases for systems software.
-* Strengthen debugging and software design skills.
+* Understand the internal stages of a compiler.
+* Apply C++ to a systems programming project.
+* Explore intermediate representations and compiler optimization.
+* Build reliable, independently testable components.
+* Strengthen debugging, testing, and software design skills.
 
 ## Future Improvements
 
-* Expand the custom instruction set.
-* Add more addressing modes and instruction formats.
-* Improve error reporting for invalid instructions and undefined symbols.
-* Add support for additional object-file metadata.
-* Develop test programs that exercise complex cross-file references.
+* Expand the supported language syntax.
+* Introduce additional optimization passes.
+* Improve diagnostics and error reporting.
+* Extend code generation and runtime validation.
+* Add benchmarks for evaluating optimization effectiveness.
 
 ## License
 
